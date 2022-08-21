@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  backstage:
+    image: backstage
+    environment:
+      POSTGRES_HOST: backstage-db
+      POSTGRES_USER: backstage
+      POSTGRES_PASSWORD: backstage2022
+      GITHUB_TOKEN: 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
+    ports:
+      - '7007:7007'
+
+  backstage-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: backstage
+      POSTGRES_PASSWORD: backstage2022
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
+
+volumes:
+  postgresql:
+  postgresql_data:
